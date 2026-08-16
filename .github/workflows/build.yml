@@ -28,11 +28,4 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --stacktrace
-
-    - name: Upload APK Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: triple-h-bakes-app
-        path: app/build/outputs/apk/debug/app-debug.apk
-        
+      run: ./gradlew assembleDebug --info
