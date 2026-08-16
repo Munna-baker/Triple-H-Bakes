@@ -18,8 +18,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Clean Invalid Gradle Wrapper
-      run: rm -f gradle/wrapper/gradle-wrapper.jar
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
 
     - name: Generate Fresh Wrapper
       run: gradle wrapper --gradle-version 8.5
@@ -28,10 +28,9 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --stacktrace --info
-      
+      run: ./gradlew assembleDebug --stacktrace
+
     - name: Upload APK Artifact
-      if: success()
       uses: actions/upload-artifact@v4
       with:
         name: triple-h-bakes-app
